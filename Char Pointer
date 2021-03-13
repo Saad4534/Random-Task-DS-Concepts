@@ -1,0 +1,19 @@
+#include<iostream>
+#include<string.h>
+#include<stdlib.h>
+using namespace std;;
+
+
+int main()
+{
+	char str[20]; 
+	strcpy(str, "My name is Saad Nadeem");
+	char *ptr = str;
+	cout<<ptr<<endl;
+	cout<<&ptr<<endl;
+	cout<<str<<endl;
+	cout<<&str<<endl;
+	cout<<*ptr<<endl;
+	ptr++;
+	cout<<str;
+}
