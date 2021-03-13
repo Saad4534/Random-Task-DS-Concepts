@@ -1,0 +1,112 @@
+#include<iostream>
+#include<fstream>
+#include<stdlib.h>
+#include<string>
+using namespace std;
+struct Cms{
+	int reg;
+	string name;
+	string f_name;
+	int age;
+	float cgpa;
+	
+}; 
+
+string s_name(Cms *p)
+{
+	cout<<"Please Enter your Name: "<<endl;
+	getline(cin,p->name);
+	return p->name;
+}
+string s_f_name(Cms *p)
+{
+	cout<<"Please Enter your Father's Name: "<<endl;
+	getline(cin,p->f_name);
+	return p->f_name;
+	
+}
+int s_reg(Cms *p)
+{
+	cout<<"Enter your Regtisteration Number: "<<endl;
+	cin>>p->reg;
+	return p->reg;
+}
+int s_age(Cms *p)
+{
+	cout<<"Enter your age: "<<endl;
+	cin>> p->age;
+	return p->age;
+}
+float s_cg(Cms *p)
+{
+	cout<<"Enter your CGPA (up to 2 decimal places)"<<endl;
+	cin>>p->cgpa;
+	return p->cgpa;
+}
+void display(Cms *p)
+{
+    ifstream file;
+    file.open("data.txt");
+    int x;
+    cout<<"Please Enter your Registeration Number: "<<endl;
+    cin>>x;
+    	if(x!=0)
+    	{
+    		while(file >> x)
+    	    {
+    		    if(x==p->reg)
+    		    {
+    	            cout<<"Your name: "<<p->name<<endl;
+    	            cout<<"Your Registeration Number is : "<<x<<endl;
+    	            cout<<"Your Father's Name is : "<<p->f_name<<endl;
+    	            cout<<"Your Age is : "<<p->age<<endl;
+    	            cout<<"Your CGPA is : "<<p->cgpa<<endl; 
+			    }
+			    else 
+		cout<<"There is no details regarding your Name"<<endl;
+		break;
+		    }
+			
+		}
+}
+
+int main()
+{
+	Cms s1,*p;
+	p = &s1;
+	int option;
+	cout<<"******WELCOME TO GIKI CMS******"<<endl;
+	cout<<"Select your option"<<endl;
+	cout<<"1. New Registeration\n2. Old Registeration\n"<<endl;
+	cin>>option;
+	switch(option)
+	{
+		case 1:
+			{
+				ofstream file("data.txt");
+				s_reg(&s1);
+				cin.ignore();
+				s_name(&s1);
+				cin.ignore();
+				s_f_name(&s1);
+				cin.ignore();
+				s_age(&s1);
+				s_cg(&s1);
+				file<<p->reg<<" ";
+				file<<p->name <<" ";
+				file<<p->f_name <<" ";
+				file<<p->age<<" ";
+				file<<p->cgpa<<" ";
+				cout<<"Your Data has been stored"<<endl;
+				file.close();
+				break;
+			}
+		case 2:
+		    {
+		    	display(&s1);
+		    	break;
+			}	
+	}
+	
+	
+}
