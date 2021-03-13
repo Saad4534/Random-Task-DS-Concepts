@@ -1,0 +1,27 @@
+#include<iostream>
+using namespace std;
+struct Student{
+	int reg;
+	Student *next;
+	
+	
+};
+
+int main()
+{
+	Student *Head;
+	Head = new Student;
+	Head->next = new Student;
+	Head->next->next = new Student;
+	Head->next->next->next = NULL;
+	cout<<"Enter reg into Head Node "<<endl;
+	cin>>Head->reg;
+	cout<<"Enter reg into first Node "<<endl;
+	cin>>Head->next->reg;
+	cout<<"Enter reg into second Node "<<endl;
+	cin>>Head->next->next->reg;
+	for(Student *p = Head; p!=NULL;p = p->next)
+	{
+		cout<<p->reg<<endl;
+	}
+}
