@@ -1,0 +1,264 @@
+#include<iostream>
+#include<cstring>
+#include<stdlib.h>
+using namespace std;
+int size=5,usize=0;
+struct data{
+	int regno;
+	char name[20];
+	char gender;
+	char faculty[4];
+	int year;
+	char grades[5];
+	float gpa;
+	float sum;
+};
+void gpac(data *l1)
+{
+	if(size==5)
+	{
+	for(int i=0;i<size;i++)
+	{
+	    l1[i].sum=0;
+		for(int j=0;j<5;j++)
+		{
+			if(l1[i].grades[j]=='A')
+			{
+				l1[i].sum=l1[i].sum+4;
+			}
+			else if(l1[i].grades[j]=='B')
+			{
+				l1[i].sum=l1[i].sum+3;
+			}
+			else if(l1[i].grades[j]=='C')
+			{
+				l1[i].sum=l1[i].sum+2;
+			}
+			else if(l1[i].grades[j]=='D')
+			{
+				l1[i].sum=l1[i].sum+1;
+			}
+			else if(l1[i].grades[j]=='F')
+			{
+				l1[i].sum=l1[i].sum+0;
+			}
+		}
+		l1[i].gpa=(l1[i].sum/20)*4;
+	}
+}
+else if(size>5)
+   {
+       l1[size-1].sum=0;
+   	for(int j=0;j<5;j++)
+		{
+			if(l1[size-1].grades[j]=='A')
+			{
+				l1[size-1].sum=l1[size-1].sum+4;
+			}
+			else if(l1[size-1].grades[j]=='B')
+			{
+				l1[size-1].sum=l1[size-1].sum+3;
+			}
+			else if(l1[size-1].grades[j]=='C')
+			{
+				l1[size-1].sum=l1[size-1].sum+2;
+			}
+			else if(l1[size-1].grades[j]=='D')
+			{
+				l1[size-1].sum=l1[size-1].sum+1;
+			}
+			else if(l1[size-1].grades[j]=='F')
+			{
+				l1[size-1].sum=l1[size-1].sum+0;
+			}
+		}
+		l1[size-1].gpa=(l1[size-1].sum/20)*4;
+	}
+
+}
+void gpaa(data *l1,int pos)
+{
+		l1[pos].sum=0;
+		for(int j=0;j<5;j++)
+		{
+			if(l1[pos].grades[j]=='A')
+			{
+				l1[pos].sum=l1[pos].sum+4;
+			}
+			else if(l1[pos].grades[j]=='B')
+			{
+				l1[pos].sum=l1[pos].sum+3;
+			}
+			else if(l1[pos].grades[j]=='C')
+			{
+				l1[pos].sum=l1[pos].sum+2;
+			}
+			else if(l1[pos].grades[j]=='D')
+			{
+				l1[pos].sum=l1[pos].sum+1;
+			}
+			else if(l1[pos].grades[j]=='F')
+			{
+				l1[pos].sum=l1[pos].sum+0;
+			}
+		}
+		l1[pos].gpa=(l1[pos].sum/20)*4;
+}
+void input(data *l1)
+{
+	for(int i=0;i<size;i++)
+	{
+		cout<<"\nEnter data for student no "<<i+1<<" : \n";
+		cout<<s
+		"Enter regno of student\n";
+		cin>>l1[i].regno;
+		cout<<"Enter name of student\n";
+		cin>>l1[i].name;
+		cout<<"Enter gender of student\n";
+		cin>>l1[i].gender;
+		cout<<"Enter faculty of student\n";
+		cin>>l1[i].faculty;
+		cout<<"Enter year of enrollment  of student\n";
+		cin>>l1[i].year;
+		for(int j=0;j<5;j++)
+		{
+		cout<<"Enter his grade in course no "<<j+1<<endl;
+		cin>>l1[i].grades[j];
+		}
+		system("cls");
+		usize++;
+	}
+	gpac(l1);
+}
+void insertend(data *l1)
+{
+	if(usize!=0)
+	{
+	int numm=size;
+	size=size+1;
+	cout<<"Enter regno of student\n";
+	cin>>l1[numm].regno;
+	cin.ignore();
+	cout<<"Enter name of student\n";
+	cin>>l1[numm].name;
+	cout<<"Enter gender of student\n";
+	cin>>l1[numm].gender;
+	cout<<"Enter faculty of student\n";
+	cin>>l1[numm].faculty;
+	cout<<"Enter year of enrollment  of student\n";
+	cin>>l1[numm].year;
+	for(int j=0;j<5;j++)
+	{
+	cout<<"Enter his grade in course no "<<j+1<<endl;
+	cin>>l1[numm].grades[j];
+	}
+	gpac(l1);
+	system("cls");
+}}
+void insertafter(data *l1)
+{
+	int i,pos,ind;
+	cout<<"After which index you want to add element";
+	cin>>ind;
+	pos=ind+1;
+	i=size;
+	size=size+1;
+	for(; i>pos; i--)
+	{
+		for(int j=0;j<20;j++)
+		{
+		l1[i].name[j]=l1[i-1].name[j];
+		}
+		l1[i].regno=l1[i-1].regno;
+		l1[i].gender=l1[i-1].gender;
+		for(int j=0;j<4;j++)
+		{
+		l1[i].faculty[j]=l1[i-1].faculty[j];
+		}
+		l1[i].gpa=l1[i-1].gpa;
+	}
+	cout<<"Enter regno of student\n";
+		cin>>l1[pos].regno;
+		cout<<"Enter name of student\n";
+		cin>>l1[pos].name;
+		cout<<"Enter gender of student\n";
+		cin>>l1[pos].gender;
+		cout<<"Enter faculty of student\n";
+		cin>>l1[pos].faculty;
+		cout<<"Enter year of enrollment  of student\n";
+		cin>>l1[pos].year;
+		for(int j=0;j<5;j++)
+		{
+		cout<<"Enter his grade in course no "<<j+1<<endl;
+		cin>>l1[pos].grades[j];
+		}
+		system("cls");
+		usize++;
+	cout<<"Element inserted successfully..!!\n";
+	gpaa(l1,pos);
+}
+void insertbefore(data *l1)
+{
+	int i,pos,ind;
+	cout<<"Before which index you want to add element";
+	cin>>ind;
+	pos=ind-1;
+	i=size;
+	size=size+1;
+	for(; i>pos; i--)
+	{
+		for(int j=0;j<20;j++)
+		{
+		l1[i].name[j]=l1[i-1].name[j];
+		}
+		l1[i].regno=l1[i-1].regno;
+		l1[i].gender=l1[i-1].gender;
+		for(int j=0;j<4;j++)
+		{
+		l1[i].faculty[j]=l1[i-1].faculty[j];
+		}
+		l1[i].gpa=l1[i-1].gpa;
+	}
+	cout<<"Enter regno of student\n";
+		cin>>l1[pos].regno;
+		cout<<"Enter name of student\n";
+		cin>>l1[pos].name;
+		cout<<"Enter gender of student\n";
+		cin>>l1[pos].gender;
+		cout<<"Enter faculty of student\n";
+		cin>>l1[pos].faculty;
+		cout<<"Enter year of enrollment  of student\n";
+		cin>>l1[pos].year;
+		for(int j=0;j<5;j++)
+		{
+		cout<<"Enter his grade in course no "<<j+1<<endl;
+		cin>>l1[pos].grades[j];
+		}
+		system("cls");
+		usize++;
+	cout<<"Element inserted successfully..!!\n";
+	gpaa(l1,pos);
+}
+void display(data *l1)
+{
+    cout<<"NAME\t\tREGNO.\t\tGENDER\t\tFACULTY \tYEAR \t\tGPA \t\tGRADES"<<endl;
+    for(int i=0;i<size;i++)
+	{
+		cout<<l1[i].name<<"\t\t"<<l1[i].regno<<"\t\t"<<l1[i].gender<<"\t\t"<<l1[i].faculty<<"\t\t"<<l1[i].year<<"\t\t"<<l1[i].gpa<<"\t\t";
+		for(int j=0;j<5;j++)
+        {
+            cout<<l1[i].grades[j];
+        }
+        cout<<endl;
+	}
+}
+int main()
+{
+
+	data *l1= new data[size];
+	input(l1);
+	display(l1);
+	//insertend(l1);
+	insertafter(l1);
+	//insertbefore(l1);
+}
