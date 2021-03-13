@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+struct Student{
+	int reg;
+	string name;
+	
+};
+void swap(Student *p, Student *q){
+	
+	int x = p->reg;
+	p->reg = q->reg;
+	q->reg = x;
+	string y = p->name;
+	p->name = q->name;
+	q->name = y;
+}
+void display(Student *s, Student *r){
+	cout<<"reg number of student 1 after swap is : "<<s->reg<<endl;
+	cout<<"Name of student 1 after swap is : "<<s->name<<endl;
+	cout<<"reg number of student 2 after swap is : "<<r->reg<<endl;
+	cout<<"Name of student 2 after swap is : "<<r->name<<endl;
+}
+int main()
+{
+	Student s1, s2;
+	cout<<"Please Enter reg number for student 1: "<<endl;
+	cin>>s1.reg;
+	cin.ignore();
+	cout<<"Please Enter name for student 1: "<<endl;
+	getline(cin,s1.name);
+	cout<<"Please Enter reg number for student 2: "<<endl;
+	cin>>s2.reg;
+	cin.ignore();
+	cout<<"Please Enter name for student 2: "<<endl;
+	getline(cin,s2.name);
+	swap(&s1,&s2);
+	display(&s1,&s2);
+}
