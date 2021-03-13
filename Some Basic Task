@@ -1,0 +1,101 @@
+
+#include<iostream>
+using namespace std;
+const int hashtable=10;
+struct node{
+	int val;
+	node *next;
+};
+node *table[10];
+int hash(int value , int tablesize)
+{
+	return value%tablesize ;
+}
+void insert(int data)
+{
+	node *ptr=new node;
+	node *temp;
+	ptr->val=data;
+	ptr->next=NULL;
+	int index=hash(data,10);
+	if(table[index]==NULL)
+	{
+		table[index]=ptr;
+	}
+	else
+	{
+		temp=table[index];
+		while(temp->next!=NULL)
+		{
+			temp=temp->next;
+		}
+		temp->next=ptr;
+	}
+}
+void search(int data)
+{
+	node *tempptr;
+	int index1=hash(data,10);
+	if(index1>10 or index1<0)
+	{
+		cout<<"Error! Data not found ";
+	}
+	else 
+	{
+	tempptr=table[index1];
+	while (tempptr->next!=NULL)
+		{
+			if(tempptr->val=data)
+			{
+				cout<<"Data found : "<<tempptr->val<<" at the index  : "<<index1<<endl;
+			}
+			tempptr=tempptr->next;
+		}
+	}
+}
+void display()
+{
+	node *temp;
+	for(int i=0;i<10;i++)
+	{
+		temp=table[i];
+		cout<<" "<<i<<" |->";
+		if(temp!=NULL)
+		{
+			while(temp!=NULL)
+			{
+			if(temp!=NULL)
+			{
+			cout<<" "<<temp->val<<" |->";
+			}
+			temp=temp->next;
+			}
+			cout<<" | NUll";
+		}
+		else
+		{
+			cout<<" | NULL";
+		}
+		cout<<endl;
+	}
+}
+int main()
+{		
+	insert(0);
+	insert(1);
+	insert(81);
+	insert(4);
+	insert(64);
+	insert(25);
+	insert(16);
+	insert(36);
+	insert(9);
+	insert(49);
+	insert(43);
+	insert(45);
+	display();
+	cout<<endl;
+	search(64);
+	search(36);
+	
+}
