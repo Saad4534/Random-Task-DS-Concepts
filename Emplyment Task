@@ -1,0 +1,88 @@
+#include<iostream>
+#include<string.h>
+#include<stdlib.h>
+#include<fstream>
+using namespace std;
+struct Student{
+	
+	string name;
+	int age;
+	int reg;
+	string f_name;
+	float cgpa;
+};
+void name();
+void fatherName();
+void reg();
+void age();
+void cg();
+void display();
+
+int main()
+{
+	Student s, *p;
+	p = &s;
+	ofstream file("data.txt");
+    name();
+    fatherName();
+    reg();
+    age();
+    cg();
+    file.close();
+    display();
+}
+void name(Student *p)
+{
+	ofstream file("data.txt");
+	cout<<"Enter you name: "<<endl;
+	getline(cin,p->name);
+	file<< p->name<<" ";
+	system("cls");
+	file.close();
+}
+void fatherName(Student *p)
+{
+	ofstream file("data.txt");
+	cout<<"Enter your Father's Name:"<<endl;
+	getline(cin,p->f_name);
+	file<< p->f_name<<" ";
+	system("cls");
+	file.close();
+}
+void reg(Student *p)
+{
+	ofstream file("data.txt");
+	cout<<"Enter your reg number: "<<endl;
+	cin>>p->reg;
+	file<< p->reg<<" ";
+	system("cls");
+	file.close();
+}
+void age(Student *p)
+{
+	ofstream file("data.txt");
+	cout<<"Enter your age: "<<endl;
+	cin>>p->age;
+	file<< p->age<<" ";
+	system("cls");
+	file.close();
+}
+void cg(Student *p)
+{
+	ofstream file("data.txt");
+	cout<<"Enter your cgpa: "<<endl;
+	cin>>p->cgpa;
+	file<< p->cgpa<<" ";
+	system("cls");
+	file.close();
+}
+void display(Student *p)
+{
+	ifstream file("data.txt");
+	cout<< "Name : "<<p->name <<endl;
+	cout<<"Father's Name: "<<p->f_name<<endl;
+	cout<<"Reg Number : "<<p->reg<<endl;
+	cout<<"Age: "<<p->age<<endl;
+	cout<<"CGPA: "<<p->cgpa<<endl;
+	file.close();
+}
