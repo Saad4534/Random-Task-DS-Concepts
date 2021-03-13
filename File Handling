@@ -1,0 +1,334 @@
+// This program is based for generic purposes 
+// It will only close when you want it to
+// This program does no contain file handling
+
+#include<iostream>
+#include<string.h>
+#include<stdlib.h>
+using namespace std;
+struct Student{
+	
+	string name;
+	int reg;
+	float cgpa;
+	Student *next;
+	Student *prev;
+	
+	
+};
+
+// function to add students at the beginning
+void addatbeg(Student *ptr, Student *Head, Student *Tail,int &choice)
+{
+	while(ptr->next!=NULL)
+	{ 
+		cout<<"Enter the Reg of the Student"<<endl;
+		cin>>ptr->reg;
+		cin.ignore();
+		cout<<"Enter the name for the student"<<endl;
+		getline(cin,ptr->name);
+		cout<<"Enter CGPA of the Student"<<endl;
+	    cin>>ptr->cgpa;
+		cout<<"Data For the particular Student has been saved !!!"<<endl;
+        ptr->next = Head->next;
+	    Head->next = ptr;
+		cout<<"Do You Want to enter Details of another Student ?"<<endl;
+		cout<<"1 for Yes\n2 for No"<<endl;
+		cin>>choice;
+		if(choice == 1)
+		{
+			ptr->next = new Student;
+			ptr = ptr->next;
+		}
+							
+	}
+	
+}
+
+
+// function to add students at the end
+void addatend(Student *ptr, Student *Head, Student *Tail,int &choice)
+{
+	while(ptr!=NULL)
+	{
+		Student *temp;
+		cout<<"Enter the Reg of the Student"<<endl;
+		cin>>ptr->reg;
+		cin.ignore();
+		cout<<"Enter the name for the student"<<endl;
+		getline(cin,ptr->name);
+		cout<<"Enter CGPA of the Student"<<endl;
+		cin>>ptr->cgpa;
+		cout<<"Data For the particular Student has been saved !!!"<<endl;
+		for(temp = Head->next;temp->next!=NULL ;temp = temp->next)
+		{		
+		}
+		temp->next = ptr;
+		cout<<"Do You Want to enter Details of another Student ?"<<endl;
+		cout<<"1 for Yes\n2 for No"<<endl;
+		cin>>choice;
+		if(choice == 1)
+		{
+			ptr->next = new Student;
+			ptr = ptr->next;
+		}
+		else
+		{
+			ptr->next = NULL;
+			ptr = ptr->next;
+		}
+	}
+}
+
+
+// function to add students after search
+void insertaftersearch(Student *ptr, Student *Head, Student *Tail,int &choice)
+{
+	int reg;
+	cout<<"Enter The Reg Number of the Student You Want To Add After it"<<endl;
+	cin>>reg;
+	for(Student *temp = Head->next;temp->next != NULL; temp = temp->next)
+	{
+		if(reg == temp->reg)
+		{
+			Student *Newptr = new Student;
+			cout<<"Enter the Reg of the Student"<<endl;
+			cin>>Newptr->reg;
+			cin.ignore();
+			cout<<"Enter the name for the student"<<endl;
+			getline(cin,Newptr->name);
+			cout<<"Enter CGPA of the Student"<<endl;
+			cin>>Newptr->cgpa;
+			cout<<"Data For the particular Student has been saved !!!"<<endl;
+			Newptr->next = temp->next;
+			temp->next = Newptr;
+			return;
+		}
+		else
+		{
+			cout<<"The Reg Number is not found"<<endl;
+		}
+	}
+}
+
+ // function to show students from the start
+void showfromstart(Student *ptr, Student *Head, Student *Tail,int &choice)
+{
+	int i=0;
+	for(Student *temp = Head->next; temp !=NULL; temp = temp->next )
+	{
+		cout<<"Details of Student "<<i+1<<endl;
+		cout<<"Registeration Number: "<<temp->reg<<endl;;
+		cout<<"Name: "<<temp->name<<endl;
+		cout<<"CGPA: "<<temp->cgpa<<endl;
+		i++;
+	}
+}
+
+
+//function to show students from the end
+void showfromend(Student *ptr, Student *Head, Student *Tail,int &choice)
+{
+	int i=0;
+	for(Student *temp = Head->next; temp!= NULL; temp = temp->next)
+	{
+		if(temp->next == NULL)
+		{
+			for(Student *temp1 = Head; temp1 != temp; temp1 = temp1->next)
+			{
+				if(temp1->next == temp)
+				{
+					for(temp->prev = temp1; temp != Head; temp = temp->prev)
+					{
+						cout<<"Details of Student "<<i+1<<endl;
+		                cout<<"Registeration Number: "<<temp->reg<<endl;;
+		                cout<<"Name: "<<temp->name<<endl;
+		                cout<<"CGPA: "<<temp->cgpa<<endl;
+		                i++;
+					}	
+				}
+			}
+		}
+	}  
+}
+
+
+// function to search students by the registeration number
+void searchbyreg(Student *ptr, Student *Head, Student *Tail,int &choice)
+{
+	int reg;
+	cout<<"Enter Registeration Number of the Student: "<<endl;
+	cin>>reg;
+	for(Student *temp = Head->next; temp!=NULL; temp=temp->next)
+	{
+		if(reg==temp->reg)
+		{
+			cout<<"Name: "<<temp->name<<endl;
+			cout<<"Registeration Number: "<<temp->reg<<endl;
+			cout<<"CGPA: "<<temp->cgpa<<endl;
+			return;
+		}
+	}
+	cout<<"No Student Found"<<endl;
+}
+
+// function to search students by name
+// the name of the students already stored in the program start from capital letter
+// use capital letter for the first letter to find the stored data
+void searchbyname(Student *ptr, Student *Head, Student *Tail,int &choice)
+{
+	string n;
+	cout<<"Please Enter the name of the Student"<<endl;
+	cin.ignore();
+	getline(cin,n);
+	for(Student *temp = Head->next; temp!=NULL; temp=temp->next)
+	{
+		if(n==temp->name)
+		{
+			cout<<"Name: "<<temp->name<<endl;
+			cout<<"Registeration Number: "<<temp->reg<<endl;
+			cout<<"CGPA: "<<temp->cgpa<<endl;
+			return;
+	    }
+	}
+	cout<<"No Student Found"<<endl;
+}
+
+// function for deleting the student
+del(Student *ptr, Student *Head, Student *Tail,int &choice)
+{
+	int reg;
+    cout<<"Enter Registeration Number"<<endl;
+	cin>>reg;
+	for(Student *temp = Head->next; temp!= NULL; temp = temp->next)
+	{
+		if(reg==temp->reg)
+		{
+			for(Student *temp1 = Head; temp1!=temp; temp1 = temp->next)
+			{
+				if(temp1->next==temp)
+				{
+					temp1->next = temp->next;
+					delete(temp);
+					cout<<"The Desired Data has been deleted"<<endl;
+					return 0;
+				}
+			}
+		}
+	}
+	cout<<"No data found"<<endl;	
+}
+
+
+int main()
+{
+	int choice1,choice2;
+	int choice ;
+	int option ;
+	Student *Head = new Student;
+	Student *Tail = new Student;
+	Student *ptr = new Student;
+	Head->next = new Student;
+	Head->next->next = new Student;
+	Head->next->next->next = new Student;
+	Head->next->name = "Saad";
+	Head->next->reg = 2017347;
+	Head->next->cgpa = 3.00;
+	Head->next->next->name = "Umar";
+	Head->next->next->reg = 2017007;
+	Head->next->next->cgpa = 2.52;
+	Head->next->next->next->name = "Ali";
+	Head->next->next->next->reg = 2017420;
+	Head->next->next->next->cgpa = 2.02;
+	Head->next->next->next->next = NULL;
+	do
+	{
+		cout<<"*****************************************"<<endl;
+	    cout<<"Welcome To GIKI STUDENT MANAGEMENT SYSTEM"<<endl;
+	    cout<<"*****************************************"<<endl;
+	    cout<<endl;
+		cout<<"1. Add a new Student\n2. Show All Students\n3. Search a Student\n4. Delete a Student"<<endl;
+	    cin>>choice1;
+	    system("CLS");	
+	    switch(choice1)
+	    {
+		    case 1:
+			    {
+				    cout<<"Select Choice"<<endl;
+				    cout<<"1. Add at beginning\n2. Add at End\n3. Add After a Student"<<endl;
+				    cin>>choice2;
+				    system("CLS");
+				    switch(choice2)
+				    {
+					    case 1:
+						    {
+							    addatbeg(ptr,Head,Tail,choice);
+							    break;
+						    }
+					    case 2:
+						    {
+							    addatend(ptr,Head,Tail,choice);
+							    break;
+						    }
+					    case 3:
+						    {
+						        insertaftersearch(ptr,Head,Tail,choice);
+								break;	
+						    }    
+				    }
+				    break;
+			    }
+	    	case 2:
+		    	{
+				    cout<<"Select Choice"<<endl;
+				    cout<<"1. Show Students from Start to end"<<endl;
+				    cout<<"2. Show Students from end to start"<<endl;
+				    cin>>choice2;
+				    system("CLS");
+				    switch(choice2)
+				    {
+					    case 1:
+						   {
+							    showfromstart(ptr,Head,Tail,choice);
+							    break;
+						   }
+					    case 2:
+						   {
+							    showfromend(ptr,Head,Tail,choice);
+							    break;
+						   }   
+				    }
+				    break;
+			    }
+		    case 3:
+			    {
+				    cout<<"Select Choice"<<endl;
+				    cout<<"1. Search by Registeration Number"<<endl;
+				    cout<<"2. Search by Name"<<endl;
+				    cin>>choice2;
+				    system("CLS");
+				    switch(choice2)
+				    {
+					    case 1:
+						    {
+							    searchbyreg(ptr,Head,Tail,choice);
+							    break;
+						    }
+					    case 2:
+						    {
+							    searchbyname(ptr,Head,Tail,choice);
+							    break;
+						    }    
+				    }
+				 break;   
+			    }
+		    case 4:
+			    {
+				    del(ptr,Head,Tail,choice);
+				    break;
+	            }
+        }
+    cout<<"Press any integer to return to Menu\nPress 0 to Exit"<<endl;
+	cin>>option;    
+	}while(option != 0);
+}
