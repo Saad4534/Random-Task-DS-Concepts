@@ -1,0 +1,80 @@
+#include<iostream>
+#include<fstream>
+#include<stdlib.h>
+using namespace std;
+struct Cms{
+	int reg;
+	string name;
+	string f_name;
+	int age;
+	float cgpa;
+	
+}; 
+
+void s_name();
+void s_f_name();
+void s_reg();
+void s_age();
+void s_cg();
+void display();
+
+int main()
+{
+	Cms s,*p;
+	p = &s;
+	int option;
+	cout<<"******WELCOME TO GIKI CMS******"<<endl;
+	cout<<"Select your option"<<endl;
+	cout<<"1. New Registeration\n2. Old Registeration\n"<<endl;
+	cin>>option;
+	switch(option)
+	{
+		case 1:
+			{
+				s_name(p);
+				s_f_name(p);
+				s_reg(p);
+				s_age(p);
+				s_cg(p);
+				cout<<"Your Data has been stored"<<endl;
+				break;
+			}
+		case 2:
+		    {
+		    	display();
+		    	break;
+			}	
+	}
+	
+	
+}
+void s_name(Cms *p)
+{
+	cout<<"Please Enter your Name: "<<endl;
+	getline(cin,p->name);
+	
+}
+void s_f_name(Cms *p)
+{
+	cout<<"Please Enter your Father's Name: "<<endl;
+	getline(cin,p->f_name);
+	
+}
+void s_reg(Cms *p)
+{
+	cout<<"Enter your Regtisteration Number: "<<endl;
+	cin>>p->reg;
+	
+}
+void s_age(Cms *p)
+{
+	
+	cout<<"Enter your age: "<<endl;
+	cin>> p->age;
+}
+void s_cg(Cms *p)
+{
+	cout<<"Enter your CGPA (up to 2 decimal places)"<<endl;
+	cin>>p->cgpa;
+	
+}
