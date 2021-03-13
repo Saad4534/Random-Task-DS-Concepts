@@ -1,0 +1,212 @@
+// This program does not contains files, So This only works entering Data of Students
+// using (Add A Student option 1 and 2) functions first.
+
+#include<iostream>
+#include<string.h>
+#include<stdlib.h>
+using namespace std;
+struct Student{
+	
+	string name;
+	int reg;
+	float cgpa;
+	Student *next;
+	Student *prev;
+	
+	
+};
+
+
+int main()
+{
+	int choice1,choice2;
+	char choice = 'Y';
+	Student *Head;
+	Student *Tail;
+	Student *ptr;
+	cout<<"*****************************************"<<endl;
+	cout<<"Welcome To GIKI STUDENT MANAGEMENT SYSTEM"<<endl;
+	cout<<"*****************************************"<<endl;
+	cout<<endl;
+	JUMP: cout<<"1. Add a new Student\n2. Show All Students\n3. Search a Student\n4. Delete a Student"<<endl;
+	cin>>choice1;
+	system("CLS");	
+	switch(choice1)
+	{
+		case 1:
+			{
+				cout<<"Select Choice"<<endl;
+				cout<<"1. Add at beginning\n2. Add at End\n3. Add After a Student"<<endl;
+				cin>>choice2;
+				system("CLS");
+				switch(choice2)
+				{
+					case 1:
+						{
+							
+							while(ptr!=NULL)
+							{
+								ptr = new Student;
+								cout<<"Enter the Reg of the Student"<<endl;
+								cin>>ptr->reg;
+								cin.ignore();
+								cout<<"Enter the name for the student"<<endl;
+								getline(cin,ptr->name);
+								cout<<"Enter CGPA of the Student"<<endl;
+								cin>>ptr->cgpa;
+								cout<<"Data For the particular Student has been saved !!!"<<endl;
+								cout<<"Do You Want to enter Details of another Student ?"<<endl;
+								cout<<"Y for Yes\nN for No"<<endl;
+								cin>>choice;
+								if(choice == 'Y')
+								{
+									ptr->next = new Student;
+									ptr = ptr->next;
+								}
+								else
+								{
+									ptr->next = NULL;
+									ptr = NULL;
+								}
+								
+							}
+							for(Student *temp = ptr; temp->prev != NULL;temp = temp->prev)
+							{
+								Head = temp;
+							}
+							goto JUMP;
+							break;
+							
+						}
+					case 2:
+						{
+							while(ptr!=NULL)
+							{
+								Tail = new Student;
+								ptr = new Student;
+								Tail->prev = ptr;
+								cout<<"Enter the Reg of the Student"<<endl;
+								cin>>ptr->reg;
+								cin.ignore();
+								cout<<"Enter the name for the student"<<endl;
+								getline(cin,ptr->name);
+								cout<<"Enter CGPA of the Student"<<endl;
+								cin>>ptr->cgpa;
+								cout<<"Data For the particular Student has been saved !!!"<<endl;
+								cout<<"Do You Want to enter Details of another Student ?"<<endl;
+								cout<<"Y for Yes\nN for No"<<endl;
+								cin>>choice;
+								if(choice == 'Y')
+								{
+									ptr->prev = new Student;
+									ptr = ptr->prev;
+								}
+								else
+								{
+									ptr->prev = NULL;
+									ptr = NULL;
+								}
+							}
+							for(Student *temp = ptr; temp->next != NULL;temp = temp->next)
+							{
+								Tail = temp;
+							}
+							goto JUMP; 
+							break;
+						}
+					case 3:
+						{
+							while(choice == 'Y')
+							{
+								int reg;
+							    cout<<"Enter The Reg Number of the Student You Want To Add After it"<<endl;
+							    cin>>reg;
+							    for(Student *temp = Head->next;temp->next != NULL; temp = temp->next)
+							    {
+								    if(reg == temp->reg)
+								    {
+									    Student *Newptr;
+									    cout<<"Enter the Reg of the Student"<<endl;
+								        cin>>Newptr->reg;
+								        cin.ignore();
+								        cout<<"Enter the name for the student"<<endl;
+								        getline(cin,Newptr->name);
+								        cout<<"Enter CGPA of the Student"<<endl;
+								        cin>>Newptr->cgpa;
+								        cout<<"Data For the particular Student has been saved !!!"<<endl;
+								        cout<<"Do You Want to enter Details of another Student ?"<<endl;
+									    Newptr->next = temp->next;
+									    temp->next = Newptr;
+								    }
+								    else
+								    {
+									    cout<<"The Reg Number is not found"<<endl;
+								    }
+								cout<<"Do You Want to Enter Another Reg Number?\nY for Yes\nN for No"<<endl;
+								cin>>choice;
+							    }
+							goto JUMP;    
+						}
+				}
+			}
+		case 2:
+			{
+				cout<<"Select Choice"<<endl;
+				cout<<"1. Show Students from Start to end"<<endl;
+				cout<<"2. Show Students from end to start"<<endl;
+				cin>>choice2;
+				system("CLS");
+				switch(choice2)
+				{
+					case 1:
+						{
+							for(Student *temp = Head; temp !=NULL; temp = temp->next )
+							{
+								int i=0;
+								cout<<"Details of Student "<<i+1<<endl;
+								cout<<"Registeration Number: "<<temp->reg<<endl;;
+								cout<<"Name: "<<temp->name<<endl;
+								cout<<"CGPA: "<<temp->cgpa<<endl;
+								i++;
+							}
+						}
+					case 2:
+						{
+							for(Student *temp =Tail; temp !=NULL;temp = temp->prev )
+							{
+								int i=0;
+								cout<<"Details of Student 1"<<endl;
+								cout<<"Registeration Number: "<<temp->reg<<endl;;
+								cout<<"Name: "<<temp->name<<endl;
+								cout<<"CGPA: "<<temp->cgpa<<endl;
+								i++;
+							}
+						}
+				}
+			}
+		case 3:
+			{
+				cout<<"Select Choice"<<endl;
+				cout<<"1. Search by Registeration Number"<<endl;
+				cout<<"2. Search by Name"<<endl;
+				cin>>choice2;
+				system("CLS");
+				switch(choice2)
+				{
+					case 1:
+						{
+							
+						}
+					case 2:
+						{
+							
+						}
+				}
+			}
+		case 4:
+			{
+				
+			}
+	}
+}
+}
